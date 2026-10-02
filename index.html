@@ -1,0 +1,2515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Anglexd — Developer Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: #050505;
+    color: #fff;
+    font-family: "Space Grotesk", sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+#stars,
+#particles,
+#snow {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#stars {
+    z-index: -10;
+}
+
+#particles {
+    z-index: -9;
+}
+
+#snow {
+    z-index: -8;
+}
+
+.grid {
+    position: fixed;
+    inset: 0;
+    z-index: -7;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+
+    background-size: 70px 70px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.8),
+        transparent 90%
+    );
+}
+
+.ambient {
+    position: fixed;
+
+    width: 700px;
+    height: 700px;
+
+    left: 50%;
+    top: 35%;
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+    z-index: -6;
+
+    background: radial-gradient(
+        circle,
+        rgba(255,255,255,.055),
+        rgba(255,255,255,.018) 35%,
+        transparent 70%
+    );
+
+    filter: blur(30px);
+}
+
+.scanlines {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 100;
+
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(255,255,255,.012) 4px
+    );
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 78px;
+
+    padding: 0 6%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(5,5,5,.72);
+
+    border-bottom: 1px solid rgba(255,255,255,.07);
+
+    backdrop-filter: blur(20px);
+
+    z-index: 50;
+}
+
+.logo {
+    color: #fff;
+
+    font-size: 19px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+}
+
+.logo span {
+    color: rgba(255,255,255,.25);
+}
+
+/* Navigation */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 5px;
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    background: rgba(255,255,255,.025);
+
+    border-radius: 12px;
+}
+
+.nav-links a {
+    position: relative;
+
+    padding: 9px 13px;
+
+    color: rgba(255,255,255,.42);
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    border-radius: 8px;
+
+    transition:
+        color .2s ease,
+        background .2s ease;
+}
+
+.nav-links a:hover {
+    color: #fff;
+}
+
+.nav-links a.active {
+    color: #fff;
+
+    background: rgba(255,255,255,.09);
+}
+
+.nav-links a.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 3px;
+
+    width: 3px;
+    height: 3px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,.8);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding:
+        120px 20px
+        80px;
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 8px 15px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 28px;
+}
+
+.badge-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 12px
+        rgba(255,255,255,.7);
+}
+
+.hero h1 {
+    font-size:
+        clamp(65px, 13vw, 155px);
+
+    line-height: .85;
+
+    font-weight: 700;
+
+    letter-spacing: -7px;
+
+    margin-bottom: 30px;
+
+    text-shadow:
+        0 0 30px
+        rgba(255,255,255,.05);
+}
+
+.hero-description {
+    max-width: 650px;
+
+    margin: auto;
+
+    color:
+        rgba(255,255,255,.45);
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+.buttons {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 35px;
+}
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    min-width: 145px;
+
+    padding: 13px 20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius: 8px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.btn:hover {
+    background:
+        rgba(255,255,255,.08);
+
+    border-color:
+        rgba(255,255,255,.22);
+}
+
+.btn.primary {
+    background: #fff;
+
+    color: #050505;
+
+    border-color: #fff;
+}
+
+.btn.primary:hover {
+    background: #e9e9e9;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+    width: min(1150px, 90%);
+
+    margin: auto;
+
+    scroll-margin-top: 110px;
+}
+
+.section {
+    padding: 130px 0;
+}
+
+.section-label {
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color:
+        rgba(255,255,255,.3);
+
+    text-transform: uppercase;
+
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-size:
+        clamp(34px, 5vw, 58px);
+
+    letter-spacing: -2px;
+
+    margin-bottom: 45px;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.2fr .8fr;
+
+    gap: 18px;
+}
+
+.glass {
+    padding: 35px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius: 16px;
+
+    backdrop-filter: blur(15px);
+}
+
+.glass h3 {
+    font-size: 20px;
+
+    margin-bottom: 15px;
+}
+
+.glass p {
+    color:
+        rgba(255,255,255,.43);
+
+    line-height: 1.8;
+
+    font-size: 14px;
+}
+
+.info-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.info {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding-bottom: 15px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
+}
+
+.info:last-child {
+    border-bottom: none;
+}
+
+.info span:first-child {
+    color:
+        rgba(255,255,255,.3);
+}
+
+.info span:last-child {
+    color:
+        rgba(255,255,255,.8);
+}
+
+/* =========================
+   FRONTEND / BACKEND
+========================= */
+
+.tech-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+}
+
+.tech-card {
+    position: relative;
+
+    padding: 35px;
+
+    min-height: 310px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.035),
+            rgba(255,255,255,.008)
+        );
+
+    overflow: hidden;
+
+    transition:
+        border-color .25s ease,
+        background .25s ease;
+}
+
+.tech-card:hover {
+    border-color:
+        rgba(255,255,255,.16);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.012)
+        );
+}
+
+.tech-number {
+    color:
+        rgba(255,255,255,.22);
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+.tech-card h3 {
+    margin-top: 55px;
+
+    font-size: 30px;
+
+    letter-spacing: -1px;
+}
+
+.tech-card p {
+    margin-top: 12px;
+
+    color:
+        rgba(255,255,255,.4);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.tech-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 25px;
+}
+
+.tech-tag {
+    padding: 8px 11px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius: 7px;
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size: 11px;
+
+    background:
+        rgba(255,255,255,.025);
+}
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+.skill {
+    padding: 25px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+
+    background:
+        rgba(255,255,255,.018);
+
+    border-radius: 12px;
+}
+
+.skill-number {
+    font-size: 11px;
+
+    color:
+        rgba(255,255,255,.25);
+
+    margin-bottom: 25px;
+}
+
+.skill-name {
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+/* =========================
+   PROJECTS
+========================= */
+
+.projects {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+.project {
+    min-height: 250px;
+
+    padding: 30px;
+
+    position: relative;
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.035),
+            rgba(255,255,255,.008)
+        );
+
+    overflow: hidden;
+
+    transition:
+        background .25s ease,
+        border-color .25s ease;
+}
+
+.project:hover {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.015)
+        );
+
+    border-color:
+        rgba(255,255,255,.15);
+}
+
+.project-number {
+    color:
+        rgba(255,255,255,.25);
+
+    font-size: 11px;
+}
+
+.project h3 {
+    position: absolute;
+
+    left: 30px;
+
+    bottom: 58px;
+
+    font-size: 25px;
+}
+
+.project p {
+    position: absolute;
+
+    left: 30px;
+
+    bottom: 28px;
+
+    color:
+        rgba(255,255,255,.35);
+
+    font-size: 13px;
+}
+
+/* =========================
+   SOCIAL
+========================= */
+
+.social-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+}
+
+.social-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 25px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,.02);
+
+    text-decoration: none;
+
+    color: white;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.social-card:hover {
+    background:
+        rgba(255,255,255,.055);
+
+    border-color:
+        rgba(255,255,255,.16);
+}
+
+.social-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,.07);
+}
+
+.social-icon svg {
+    width: 25px;
+    height: 25px;
+
+    fill: white;
+}
+
+.social-info h3 {
+    font-size: 15px;
+
+    margin-bottom: 4px;
+}
+
+.social-info p {
+    color:
+        rgba(255,255,255,.35);
+
+    font-size: 12px;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact {
+    text-align: center;
+
+    padding: 150px 0;
+}
+
+.contact h2 {
+    font-size:
+        clamp(40px, 7vw, 80px);
+
+    letter-spacing: -4px;
+
+    margin-bottom: 20px;
+}
+
+.contact p {
+    color:
+        rgba(255,255,255,.4);
+
+    margin-bottom: 30px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 30px 7%;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.06);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color:
+        rgba(255,255,255,.25);
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+/* =========================
+   MUSIC
+========================= */
+
+.music-player {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    width: 270px;
+
+    padding: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    background:
+        rgba(10,10,10,.82);
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    border-radius: 12px;
+
+    backdrop-filter: blur(20px);
+
+    z-index: 80;
+}
+
+.music-button {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #fff;
+
+    color: #000;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.music-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.music-title {
+    font-size: 12px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    margin-bottom: 7px;
+}
+
+.progress {
+    width: 100%;
+
+    height: 3px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    border-radius: 5px;
+
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+
+    height: 100%;
+
+    background: #fff;
+}
+
+.music-time {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 5px;
+
+    color:
+        rgba(255,255,255,.3);
+
+    font-size: 9px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        gap: 0;
+    }
+
+    .nav-links a {
+        padding: 8px 9px;
+
+        font-size: 9px;
+    }
+
+    .about-grid,
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+
+    nav {
+        height: 70px;
+
+        padding:
+            0 4%;
+    }
+
+    .logo {
+        font-size: 15px;
+    }
+
+    .nav-links {
+        max-width: 70vw;
+
+        overflow-x: auto;
+
+        scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-links a {
+        white-space: nowrap;
+    }
+
+    .hero h1 {
+        letter-spacing: -4px;
+    }
+
+    .projects,
+    .social-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .music-player {
+        left: 15px;
+        right: 15px;
+
+        width: auto;
+
+        bottom: 15px;
+    }
+
+    footer {
+        flex-direction: column;
+
+        gap: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+
+<canvas id="stars"></canvas>
+<canvas id="particles"></canvas>
+<canvas id="snow"></canvas>
+
+<div class="grid"></div>
+<div class="ambient"></div>
+<div class="scanlines"></div>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <a href="#home" class="logo">
+        ANGLEXD<span>/</span>
+    </a>
+
+    <div class="nav-links">
+
+        <a href="#home" class="active">
+            HOME
+        </a>
+
+        <a href="#about">
+            ABOUT
+        </a>
+
+        <a href="#frontend">
+            FRONTEND
+        </a>
+
+        <a href="#backend">
+            BACKEND
+        </a>
+
+        <a href="#projects">
+            PROJECTS
+        </a>
+
+        <a href="#contact">
+            CONTACT
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            <span class="badge-dot"></span>
+            DEVELOPER • CREATIVE CODER
+        </div>
+
+        <h1>
+            ANGLEXD
+        </h1>
+
+        <p class="hero-description">
+            I build futuristic interfaces, creative websites,
+            developer tools and experimental digital experiences.
+        </p>
+
+        <div class="buttons">
+
+            <a
+                href="#projects"
+                class="btn primary"
+            >
+                View My Work
+            </a>
+
+            <a
+                href="https://discord.gg/mERWjddtNA"
+                target="_blank"
+                class="btn"
+            >
+                Discord
+            </a>
+
+            <a
+                href="https://www.youtube.com/@GlitchScripts1"
+                target="_blank"
+                class="btn"
+            >
+                YouTube
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section
+    class="section"
+    id="about"
+>
+
+    <div class="section-label">
+        01 / ABOUT
+    </div>
+
+    <h2 class="section-title">
+        About me.
+    </h2>
+
+    <div class="about-grid">
+
+        <div class="glass">
+
+            <h3>
+                Hey, I'm Anglexd.
+            </h3>
+
+            <p>
+                I'm a developer interested in software,
+                interfaces, websites, animations, tools
+                and interactive digital experiences.
+                I enjoy experimenting with different
+                technologies and turning ideas into projects.
+            </p>
+
+        </div>
+
+        <div class="glass">
+
+            <div class="info-list">
+
+                <div class="info">
+                    <span>Focus</span>
+                    <span>Development</span>
+                </div>
+
+                <div class="info">
+                    <span>Style</span>
+                    <span>Futuristic UI</span>
+                </div>
+
+                <div class="info">
+                    <span>Projects</span>
+                    <span>Creative Tools</span>
+                </div>
+
+                <div class="info">
+                    <span>Brand</span>
+                    <span>Glitch Scripts</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FRONTEND
+========================= -->
+
+<section
+    class="section"
+    id="frontend"
+>
+
+    <div class="section-label">
+        02 / FRONTEND
+    </div>
+
+    <h2 class="section-title">
+        Frontend development.
+    </h2>
+
+    <div class="tech-grid">
+
+        <div class="tech-card">
+
+            <div class="tech-number">
+                FRONTEND / 01
+            </div>
+
+            <h3>
+                Interfaces
+            </h3>
+
+            <p>
+                Clean, responsive and animated
+                interfaces designed around modern
+                user experiences.
+            </p>
+
+            <div class="tech-list">
+
+                <span class="tech-tag">
+                    HTML
+                </span>
+
+                <span class="tech-tag">
+                    CSS
+                </span>
+
+                <span class="tech-tag">
+                    JavaScript
+                </span>
+
+                <span class="tech-tag">
+                    Responsive UI
+                </span>
+
+                <span class="tech-tag">
+                    Animations
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="tech-card">
+
+            <div class="tech-number">
+                FRONTEND / 02
+            </div>
+
+            <h3>
+                Visual Design
+            </h3>
+
+            <p>
+                Futuristic layouts, glass effects,
+                interactive components and
+                polished visual systems.
+            </p>
+
+            <div class="tech-list">
+
+                <span class="tech-tag">
+                    UI Design
+                </span>
+
+                <span class="tech-tag">
+                    Motion
+                </span>
+
+                <span class="tech-tag">
+                    Glassmorphism
+                </span>
+
+                <span class="tech-tag">
+                    Visual FX
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BACKEND
+========================= -->
+
+<section
+    class="section"
+    id="backend"
+>
+
+    <div class="section-label">
+        03 / BACKEND
+    </div>
+
+    <h2 class="section-title">
+        Backend development.
+    </h2>
+
+    <div class="tech-grid">
+
+        <div class="tech-card">
+
+            <div class="tech-number">
+                BACKEND / 01
+            </div>
+
+            <h3>
+                Programming
+            </h3>
+
+            <p>
+                Building applications, utilities,
+                automation and custom developer tools.
+            </p>
+
+            <div class="tech-list">
+
+                <span class="tech-tag">
+                    C++
+                </span>
+
+                <span class="tech-tag">
+                    C#
+                </span>
+
+                <span class="tech-tag">
+                    Python
+                </span>
+
+                <span class="tech-tag">
+                    APIs
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="tech-card">
+
+            <div class="tech-number">
+                BACKEND / 02
+            </div>
+
+            <h3>
+                Tools
+            </h3>
+
+            <p>
+                Experimental software and custom
+                tools focused on functionality,
+                performance and automation.
+            </p>
+
+            <div class="tech-list">
+
+                <span class="tech-tag">
+                    Developer Tools
+                </span>
+
+                <span class="tech-tag">
+                    Automation
+                </span>
+
+                <span class="tech-tag">
+                    Utilities
+                </span>
+
+                <span class="tech-tag">
+                    Software
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section
+    class="section"
+>
+
+    <div class="section-label">
+        04 / SKILLS
+    </div>
+
+    <h2 class="section-title">
+        Technologies.
+    </h2>
+
+    <div class="skills">
+
+        <div class="skill">
+            <div class="skill-number">01</div>
+            <div class="skill-name">HTML</div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-number">02</div>
+            <div class="skill-name">CSS</div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-number">03</div>
+            <div class="skill-name">JavaScript</div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-number">04</div>
+            <div class="skill-name">C++</div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-number">05</div>
+            <div class="skill-name">C#</div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-number">06</div>
+            <div class="skill-name">Python</div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-number">07</div>
+            <div class="skill-name">UI Design</div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-number">08</div>
+            <div class="skill-name">Visual FX</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECTS
+========================= -->
+
+<section
+    class="section"
+    id="projects"
+>
+
+    <div class="section-label">
+        05 / PROJECTS
+    </div>
+
+    <h2 class="section-title">
+        Selected work.
+    </h2>
+
+    <div class="projects">
+
+        <div class="project">
+
+            <div class="project-number">
+                PROJECT / 01
+            </div>
+
+            <h3>
+                Creative Web UI
+            </h3>
+
+            <p>
+                Experimental interfaces & animations
+            </p>
+
+        </div>
+
+
+        <div class="project">
+
+            <div class="project-number">
+                PROJECT / 02
+            </div>
+
+            <h3>
+                UI Projects
+            </h3>
+
+            <p>
+                Modern desktop and web interfaces
+            </p>
+
+        </div>
+
+
+        <div class="project">
+
+            <div class="project-number">
+                PROJECT / 03
+            </div>
+
+            <h3>
+                Developer Tools
+            </h3>
+
+            <p>
+                Utilities and custom development tools
+            </p>
+
+        </div>
+
+
+        <div class="project">
+
+            <div class="project-number">
+                PROJECT / 04
+            </div>
+
+            <h3>
+                Glitch Scripts
+            </h3>
+
+            <p>
+                Coding projects and experiments
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SOCIAL
+========================= -->
+
+<section class="section">
+
+    <div class="section-label">
+        06 / SOCIAL
+    </div>
+
+    <h2 class="section-title">
+        Find me online.
+    </h2>
+
+    <div class="social-grid">
+
+        <a
+            class="social-card"
+            href="https://discord.gg/mERWjddtNA"
+            target="_blank"
+        >
+
+            <div class="social-icon">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M19.54 5.23A16.55 16.55 0 0 0 15.4 4l-.52 1.06a15.2 15.2 0 0 0-5.76 0L8.6 4a16.6 16.6 0 0 0-4.15 1.23C1.8 9.38 1.1 13.43 1.45 17.42a16.7 16.7 0 0 0 5.1 2.58l1.24-1.7a10.7 10.7 0 0 1-1.95-.94l.48-.36c3.76 1.75 7.84 1.75 11.55 0l.49.36c-.63.37-1.28.68-1.96.94l1.24 1.7a16.7 16.7 0 0 0 5.1-2.58c.42-4.63-.72-8.64-3.2-12.19ZM8.5 15.6c-1.1 0-2-.98-2-2.19s.88-2.2 2-2.2 2 .99 2 2.2-.9 2.19-2 2.19Zm7 0c-1.1 0-2-.98-2-2.19s.88-2.2 2-2.2 2 .99 2 2.2-.9 2.19-2 2.19Z"/>
+                </svg>
+
+            </div>
+
+            <div class="social-info">
+
+                <h3>Discord</h3>
+
+                <p>
+                    Join the community
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <a
+            class="social-card"
+            href="https://www.youtube.com/@GlitchScripts1"
+            target="_blank"
+        >
+
+            <div class="social-icon">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8ZM9.6 15.9V8.1l6.5 3.9-6.5 3.9Z"/>
+                </svg>
+
+            </div>
+
+            <div class="social-info">
+
+                <h3>YouTube</h3>
+
+                <p>
+                    Glitch Scripts
+                </p>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section
+    class="contact"
+    id="contact"
+>
+
+    <div class="section-label">
+        07 / CONTACT
+    </div>
+
+    <h2>
+        Let's build something.
+    </h2>
+
+    <p>
+        Got an idea? Come say what's up.
+    </p>
+
+    <div class="buttons">
+
+        <a
+            href="https://discord.gg/mERWjddtNA"
+            target="_blank"
+            class="btn primary"
+        >
+            Discord
+        </a>
+
+        <a
+            href="https://www.youtube.com/@GlitchScripts1"
+            target="_blank"
+            class="btn"
+        >
+            YouTube
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <span>
+        © 2026 ANGLEXD
+    </span>
+
+    <span>
+        MADE WITH CODE
+    </span>
+
+</footer>
+
+
+<!-- =========================
+     MUSIC PLAYER
+========================= -->
+
+<div class="music-player">
+
+    <button
+        class="music-button"
+        id="musicButton"
+    >
+        ▶
+    </button>
+
+    <div class="music-info">
+
+        <div class="music-title">
+            Now Playing — Anglexd
+        </div>
+
+        <div class="progress">
+
+            <div
+                class="progress-bar"
+                id="progressBar"
+            ></div>
+
+        </div>
+
+        <div class="music-time">
+
+            <span id="currentTime">
+                0:00
+            </span>
+
+            <span id="duration">
+                0:00
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<audio
+    id="audio"
+    src="song.mp3"
+    preload="auto"
+    loop
+></audio>
+
+
+<script>
+
+/* =========================
+   STARFIELD
+========================= */
+
+const starCanvas =
+    document.getElementById("stars");
+
+const starCtx =
+    starCanvas.getContext("2d");
+
+let stars = [];
+
+function resizeStars() {
+
+    starCanvas.width =
+        window.innerWidth;
+
+    starCanvas.height =
+        window.innerHeight;
+}
+
+function createStars() {
+
+    stars = [];
+
+    const amount =
+        Math.min(
+            180,
+            Math.floor(
+                window.innerWidth *
+                window.innerHeight /
+                9000
+            )
+        );
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        stars.push({
+
+            x:
+                Math.random() *
+                window.innerWidth,
+
+            y:
+                Math.random() *
+                window.innerHeight,
+
+            size:
+                Math.random() * 1.5 + .2,
+
+            speed:
+                Math.random() * .25 + .05,
+
+            alpha:
+                Math.random() * .6 + .1
+
+        });
+    }
+}
+
+function drawStars() {
+
+    starCtx.clearRect(
+        0,
+        0,
+        starCanvas.width,
+        starCanvas.height
+    );
+
+    for (const star of stars) {
+
+        star.y += star.speed;
+
+        if (
+            star.y >
+            window.innerHeight
+        ) {
+
+            star.y = -5;
+
+            star.x =
+                Math.random() *
+                window.innerWidth;
+        }
+
+        starCtx.globalAlpha =
+            star.alpha;
+
+        starCtx.beginPath();
+
+        starCtx.arc(
+            star.x,
+            star.y,
+            star.size,
+            0,
+            Math.PI * 2
+        );
+
+        starCtx.fillStyle =
+            "#ffffff";
+
+        starCtx.fill();
+    }
+
+    requestAnimationFrame(
+        drawStars
+    );
+}
+
+resizeStars();
+createStars();
+drawStars();
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+const particleCanvas =
+    document.getElementById(
+        "particles"
+    );
+
+const particleCtx =
+    particleCanvas.getContext("2d");
+
+let particles = [];
+
+function resizeParticles() {
+
+    particleCanvas.width =
+        window.innerWidth;
+
+    particleCanvas.height =
+        window.innerHeight;
+}
+
+function createParticles() {
+
+    particles = [];
+
+    const amount =
+        Math.min(
+            70,
+            Math.floor(
+                window.innerWidth / 18
+            )
+        );
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        particles.push({
+
+            x:
+                Math.random() *
+                window.innerWidth,
+
+            y:
+                Math.random() *
+                window.innerHeight,
+
+            size:
+                Math.random() *
+                1.8 + .4,
+
+            vx:
+                (Math.random() - .5) *
+                .18,
+
+            vy:
+                (Math.random() - .5) *
+                .18,
+
+            alpha:
+                Math.random() *
+                .35 + .08
+
+        });
+    }
+}
+
+function drawParticles() {
+
+    particleCtx.clearRect(
+        0,
+        0,
+        particleCanvas.width,
+        particleCanvas.height
+    );
+
+    for (
+        const p of particles
+    ) {
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0)
+            p.x =
+                window.innerWidth;
+
+        if (
+            p.x >
+            window.innerWidth
+        )
+            p.x = 0;
+
+        if (p.y < 0)
+            p.y =
+                window.innerHeight;
+
+        if (
+            p.y >
+            window.innerHeight
+        )
+            p.y = 0;
+
+        particleCtx.globalAlpha =
+            p.alpha;
+
+        particleCtx.beginPath();
+
+        particleCtx.arc(
+            p.x,
+            p.y,
+            p.size,
+            0,
+            Math.PI * 2
+        );
+
+        particleCtx.fillStyle =
+            "#ffffff";
+
+        particleCtx.fill();
+    }
+
+    particleCtx.globalAlpha =
+        .045;
+
+    for (
+        let i = 0;
+        i < particles.length;
+        i++
+    ) {
+
+        for (
+            let j = i + 1;
+            j < particles.length;
+            j++
+        ) {
+
+            const a =
+                particles[i];
+
+            const b =
+                particles[j];
+
+            const dx =
+                a.x - b.x;
+
+            const dy =
+                a.y - b.y;
+
+            const distance =
+                Math.sqrt(
+                    dx * dx +
+                    dy * dy
+                );
+
+            if (
+                distance < 120
+            ) {
+
+                particleCtx.beginPath();
+
+                particleCtx.moveTo(
+                    a.x,
+                    a.y
+                );
+
+                particleCtx.lineTo(
+                    b.x,
+                    b.y
+                );
+
+                particleCtx.strokeStyle =
+                    "#ffffff";
+
+                particleCtx.stroke();
+            }
+        }
+    }
+
+    requestAnimationFrame(
+        drawParticles
+    );
+}
+
+resizeParticles();
+createParticles();
+drawParticles();
+
+
+/* =========================
+   SNOW
+========================= */
+
+const snowCanvas =
+    document.getElementById("snow");
+
+const snowCtx =
+    snowCanvas.getContext("2d");
+
+let snowflakes = [];
+
+function resizeSnow() {
+
+    snowCanvas.width =
+        window.innerWidth;
+
+    snowCanvas.height =
+        window.innerHeight;
+}
+
+function createSnow() {
+
+    snowflakes = [];
+
+    const amount =
+        Math.min(
+            100,
+            Math.floor(
+                window.innerWidth / 12
+            )
+        );
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        snowflakes.push({
+
+            x:
+                Math.random() *
+                window.innerWidth,
+
+            y:
+                Math.random() *
+                window.innerHeight,
+
+            radius:
+                Math.random() *
+                1.7 + .3,
+
+            speed:
+                Math.random() *
+                .8 + .25,
+
+            drift:
+                Math.random() *
+                .5 - .25,
+
+            alpha:
+                Math.random() *
+                .5 + .15
+
+        });
+    }
+}
+
+function drawSnow() {
+
+    snowCtx.clearRect(
+        0,
+        0,
+        snowCanvas.width,
+        snowCanvas.height
+    );
+
+    for (
+        const snow of snowflakes
+    ) {
+
+        snow.y +=
+            snow.speed;
+
+        snow.x +=
+            snow.drift;
+
+        if (
+            snow.y >
+            window.innerHeight + 5
+        ) {
+
+            snow.y = -5;
+
+            snow.x =
+                Math.random() *
+                window.innerWidth;
+        }
+
+        if (
+            snow.x >
+            window.innerWidth
+        )
+            snow.x = 0;
+
+        if (snow.x < 0)
+            snow.x =
+                window.innerWidth;
+
+        snowCtx.globalAlpha =
+            snow.alpha;
+
+        snowCtx.beginPath();
+
+        snowCtx.arc(
+            snow.x,
+            snow.y,
+            snow.radius,
+            0,
+            Math.PI * 2
+        );
+
+        snowCtx.fillStyle =
+            "#ffffff";
+
+        snowCtx.fill();
+    }
+
+    requestAnimationFrame(
+        drawSnow
+    );
+}
+
+resizeSnow();
+createSnow();
+drawSnow();
+
+
+/* =========================
+   MUSIC
+========================= */
+
+const audio =
+    document.getElementById(
+        "audio"
+    );
+
+const musicButton =
+    document.getElementById(
+        "musicButton"
+    );
+
+const progressBar =
+    document.getElementById(
+        "progressBar"
+    );
+
+const currentTime =
+    document.getElementById(
+        "currentTime"
+    );
+
+const duration =
+    document.getElementById(
+        "duration"
+    );
+
+let musicStarted = false;
+
+function formatTime(seconds) {
+
+    if (!isFinite(seconds))
+        return "0:00";
+
+    const minutes =
+        Math.floor(
+            seconds / 60
+        );
+
+    const secs =
+        Math.floor(
+            seconds % 60
+        )
+        .toString()
+        .padStart(2, "0");
+
+    return `${minutes}:${secs}`;
+}
+
+function updateMusicUI() {
+
+    if (!audio.duration)
+        return;
+
+    const percentage =
+        audio.currentTime /
+        audio.duration *
+        100;
+
+    progressBar.style.width =
+        percentage + "%";
+
+    currentTime.textContent =
+        formatTime(
+            audio.currentTime
+        );
+
+    duration.textContent =
+        formatTime(
+            audio.duration
+        );
+}
+
+function startMusic() {
+
+    if (musicStarted)
+        return;
+
+    audio.volume = .35;
+
+    const promise =
+        audio.play();
+
+    if (
+        promise !== undefined
+    ) {
+
+        promise
+            .then(() => {
+
+                musicStarted = true;
+
+                musicButton.textContent =
+                    "❚❚";
+
+            })
+            .catch(() => {
+
+                /* Browser blocked autoplay.
+                   First interaction will start it. */
+
+            });
+    }
+}
+
+window.addEventListener(
+    "load",
+    () => {
+
+        setTimeout(
+            startMusic,
+            400
+        );
+
+    }
+);
+
+function firstInteraction() {
+
+    if (!musicStarted)
+        startMusic();
+
+    document.removeEventListener(
+        "click",
+        firstInteraction
+    );
+
+    document.removeEventListener(
+        "keydown",
+        firstInteraction
+    );
+
+    document.removeEventListener(
+        "touchstart",
+        firstInteraction
+    );
+}
+
+document.addEventListener(
+    "click",
+    firstInteraction,
+    { once: true }
+);
+
+document.addEventListener(
+    "keydown",
+    firstInteraction,
+    { once: true }
+);
+
+document.addEventListener(
+    "touchstart",
+    firstInteraction,
+    { once: true }
+);
+
+musicButton.addEventListener(
+    "click",
+    () => {
+
+        if (
+            audio.paused
+        ) {
+
+            audio.play();
+
+            musicButton.textContent =
+                "❚❚";
+
+            musicStarted = true;
+
+        } else {
+
+            audio.pause();
+
+            musicButton.textContent =
+                "▶";
+        }
+    }
+);
+
+audio.addEventListener(
+    "timeupdate",
+    updateMusicUI
+);
+
+audio.addEventListener(
+    "loadedmetadata",
+    updateMusicUI
+);
+
+
+/* =========================
+   ACTIVE NAVIGATION
+========================= */
+
+const navLinks =
+    document.querySelectorAll(
+        ".nav-links a"
+    );
+
+const sections =
+    document.querySelectorAll(
+        "section[id]"
+    );
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        navLinks.forEach(
+                            link => {
+
+                                link.classList.remove(
+                                    "active"
+                                );
+
+                                if (
+                                    link.getAttribute(
+                                        "href"
+                                    ) ===
+                                    "#" +
+                                    entry.target.id
+                                ) {
+
+                                    link.classList.add(
+                                        "active"
+                                    );
+                                }
+
+                            }
+                        );
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: .35
+        }
+    );
+
+sections.forEach(
+    section => {
+        observer.observe(section);
+    }
+);
+
+
+/* =========================
+   RESIZE
+========================= */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        resizeStars();
+        resizeParticles();
+        resizeSnow();
+
+        createStars();
+        createParticles();
+        createSnow();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
